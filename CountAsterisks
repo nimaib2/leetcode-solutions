@@ -17,7 +17,6 @@ There are 2 asterisks considered. Therefore, we return 2.
 
 class Solution {
     public int countAsterisks(String s) {
-        String consideration = "";
         int barCount = 0;
         int asterisks=0;
 
@@ -26,7 +25,6 @@ class Solution {
             if(c.equals("|")){
                 barCount++;
             } else if(barCount==0){
-                consideration+=c;
                 if(c.equals("*")){
                     asterisks++;
                 }
