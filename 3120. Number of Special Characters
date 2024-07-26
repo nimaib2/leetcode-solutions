@@ -1,0 +1,22 @@
+Time Complexity: O(N)
+Space Complexity: O(N)
+
+class Solution {
+    public int numberOfSpecialChars(String word) {
+        char[] chars = word.toCharArray();
+        int count=0;
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for(char c:chars){
+            if(!map.containsKey(c) && Character.isLowerCase(c) && word.indexOf(Character.toUpperCase(c))!=-1){
+                map.put(c, 1);
+            }
+        }
+
+        for(int value:map.values()){
+            count+=value;
+        }
+
+        return count;
+    }
+}
