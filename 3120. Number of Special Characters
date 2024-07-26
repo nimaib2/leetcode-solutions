@@ -13,10 +13,6 @@ class Solution {
             }
         }
 
-        for(int value:map.values()){
-            count+=value;
-        }
-
-        return count;
+        return map.size();
     }
 }
