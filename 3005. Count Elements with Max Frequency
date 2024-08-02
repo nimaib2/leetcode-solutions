@@ -1,0 +1,21 @@
+class Solution {
+    public int maxFrequencyElements(int[] nums) {
+        int count=0;
+        HashMap<Integer, Integer> freqMap = new HashMap<Integer, Integer>();
+        for(int num:nums){
+            if(freqMap.containsKey(num)){
+                freqMap.put(num, freqMap.get(num)+1);
+            } else {
+                freqMap.put(num, 1);
+            }
+        }
+
+        for(int num:freqMap.values()){
+            if(num==Collections.max(freqMap.values())){
+                count+=num;
+            }
+        }
+
+        return count;
+    }
+}
