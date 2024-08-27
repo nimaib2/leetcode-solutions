@@ -1,0 +1,26 @@
+class Solution {
+    public double calculateTax(int[][] brackets, int income) {
+        double taxes = 0.0;
+        int previousLimit = 0;
+
+        for (int i = 0; i < brackets.length; i++) {
+            int currentLimit = brackets[i][0];
+            int taxRate = brackets[i][1];
+            
+            //if your income is above the current tax bracket limit, it taxes the limit minus the previous bracket limit (if current limit is 7 and previous is 3, tax 4 dollars)
+            if (income > currentLimit) {
+                taxes += (currentLimit - previousLimit) * (double)taxRate / 100;
+
+            //if you don't have enough income for the bracket, subtract your income from the previous limit (if your income is 10, you will be taxed 3 dollars if the previous limit is 7 and the current one is 12)
+            } else {
+                taxes += (income - previousLimit) * (double)taxRate / 100;
+                return taxes;
+            }
+            
+            //changes the previous limit when you move to a new tax bracket
+            previousLimit = currentLimit;
+        }
+
+        return taxes;
+    }
+}
