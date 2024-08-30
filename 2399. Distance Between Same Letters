@@ -1,0 +1,27 @@
+//This is a good solution, but there is a more efficient one.
+
+class Solution {
+    public boolean checkDistances(String s, int[] distance) {
+        HashMap<Character, List<Integer>> letterMap = new HashMap<Character, List<Integer>>();
+        for(int i=0; i<s.length(); i++){
+            char c=s.charAt(i);
+            if(letterMap.containsKey(c)){
+                List<Integer> indices = letterMap.get(c);
+                indices.add(i);
+                letterMap.put(c, indices);
+            } else {
+                List<Integer> indices = new ArrayList<>();
+                indices.add(i);
+                letterMap.put(c, indices);
+            }
+        }
+
+        for(Character c:letterMap.keySet()){
+            if(letterMap.get(c).get(1)-letterMap.get(c).get(0)-1!=distance[c-'a']){
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
