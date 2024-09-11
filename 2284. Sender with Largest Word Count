@@ -1,0 +1,24 @@
+##This is in Python, but my first LC Medium problem solved!
+
+class Solution:
+    def largestWordCount(self, messages: List[str], senders: List[str]) -> str:
+        namesToWords = {}
+        for i in range(len(senders)):
+            if senders[i] not in namesToWords:
+                namesToWords[senders[i]]=len(messages[i].split(" "))
+            else:
+                namesToWords[senders[i]]+=len(messages[i].split(" "))
+        
+        max=0
+        maxName = ""
+        for name in namesToWords.keys():
+            if namesToWords[name]>max:
+                max=namesToWords[name]
+                maxName=name
+            elif namesToWords[name]==max:
+                if maxName<name:
+                    maxName=name
+        
+        return maxName
+
+        
