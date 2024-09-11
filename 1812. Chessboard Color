@@ -1,0 +1,17 @@
+class Solution {
+    public boolean squareIsWhite(String coordinates) {
+        String[] coords = coordinates.split("");
+        if(Integer.parseInt(coords[1])%2==1){
+            if((coords[0].equals("b") || coords[0].equals("d") || coords[0].equals("f") || coords[0].equals("h"))){
+                return true;
+            } 
+            return false;
+        } else {
+            if((coords[0].equals("a") || coords[0].equals("c") || coords[0].equals("e") || coords[0].equals("g"))){
+                return true;
+            }
+        }
+        return false;
+        
+    }
+}
