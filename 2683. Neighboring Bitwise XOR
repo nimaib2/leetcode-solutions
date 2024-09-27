@@ -1,0 +1,6 @@
+class Solution:
+    def doesValidArrayExist(self, derived: List[int]) -> bool:
+        return sum(derived)%2==0
+
+        #This works because if the sum of derived is odd, the adjacent numbers in the original array cannot add up to something even. For example, if the derived array is [1, 0], the original array cannot contain the 
+        value 1. If the original array is [1, 0] or [0, 1], the bitwise XOR array that is derived will be [1,1], as adding up the adjacent elements in the original array will only give you 1.
