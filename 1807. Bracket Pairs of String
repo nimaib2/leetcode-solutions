@@ -1,0 +1,30 @@
+class Solution {
+    public String evaluate(String s, List<List<String>> knowledge) {
+        Map<String, String> knowledgeBase = new HashMap<String, String>();
+        for(List<String> pair : knowledge){
+            knowledgeBase.put(pair.get(0), pair.get(1));
+        }
+
+        String retStr = "";
+        for(int i=0; i<s.length(); i++){
+            if(s.charAt(i)=='('){
+                int start=i;
+                int end=i;
+                while(s.charAt(i)!=')'){
+                    i++;
+                }
+                end=i;
+                String str=knowledgeBase.get(s.substring(start+1,end));
+                if(str==null){
+                    retStr+="?";
+                } else {
+                    retStr+=str;
+                }
+            } else {
+                retStr+=""+s.charAt(i);
+            }
+        }
+
+        return retStr;
+    }
+}
