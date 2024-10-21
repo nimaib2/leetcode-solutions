@@ -1,0 +1,18 @@
+import math
+
+class Solution:
+    def numSub(self, s: str) -> int:
+        numSubs = 0
+        longestStreak=0
+        for i in range(len(s)):
+            if s[i]=="1":
+                longestStreak+=1
+            else:
+                for i in range(longestStreak+1):
+                    numSubs+=i
+                longestStreak=0
+        
+        for i in range(longestStreak+1):
+            numSubs+=i
+
+        return numSubs%((10**9)+7)
