@@ -8,8 +8,8 @@ class Solution:
             if s[i]=="1":
                 longestStreak+=1
             else:
-                for i in range(longestStreak+1):
-                    numSubs+=i
+                for j in range(longestStreak+1):
+                    numSubs+=j #Changed from i to j for less confusion with variables, not necessary for python though
                 longestStreak=0
         
         for i in range(longestStreak+1):
