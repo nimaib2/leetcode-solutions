@@ -1,0 +1,17 @@
+class Solution {
+    public String complexNumberMultiply(String num1, String num2) {
+        String[] pair1 = num1.split("\\+");
+        String[] pair2 = num2.split("\\+");
+
+        int num = 0;
+        int coefficient = 0;
+
+        num += (Integer.parseInt(pair1[0])*Integer.parseInt(pair2[0]))-(Integer.parseInt(pair1[1].substring(0, pair1[1].length()-1))*Integer.parseInt(pair2[1].substring(0, pair2[1].length()-1)));
+        coefficient += (Integer.parseInt(pair1[0])*Integer.parseInt(pair2[1].substring(0, pair2[1].length()-1)))+(Integer.parseInt(pair2[0])*Integer.parseInt(pair1[1].substring(0, pair1[1].length()-1)));
+
+        return num+"+"+coefficient+"i";
+
+    }
+}
+
+//This is a pretty unreadable solution, there are much better ways to make this run faster
