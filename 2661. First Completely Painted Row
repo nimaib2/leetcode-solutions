@@ -1,0 +1,26 @@
+class Solution {
+    public int firstCompleteIndex(int[] arr, int[][] mat) {
+        HashMap<Integer, int[]> positions = new HashMap<>();
+        int[] rowProgress = new int[mat.length];
+        int[] colProgress = new int[mat[0].length];
+
+        for(int i=0; i<mat.length; i++){
+            for(int j=0; j<mat[0].length; j++){
+                positions.put(mat[i][j], new int[]{i, j});
+            }
+        }
+
+        for(int i=0; i<arr.length; i++){
+            int[] coords = positions.get(arr[i]);
+            int x = coords[0];
+            int y = coords[1];
+            rowProgress[x]++;
+            colProgress[y]++;
+            if(rowProgress[x]==mat[0].length || colProgress[y]==mat.length){
+                return i;
+            }
+        }
+
+        return arr.length-1;
+    }
+}
