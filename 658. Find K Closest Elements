@@ -1,0 +1,15 @@
+class Solution {
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+        Queue<Integer> q = new LinkedList<>();
+        for(int num:arr){
+            if(q.size()<k){
+                q.add(num);
+            } else if(Math.abs(num-x)<Math.abs(q.peek()-x)||
+                    (Math.abs(num-x)==Math.abs(q.peek()-x) && num<q.peek())){
+                        q.remove();
+                        q.add(num);
+            }
+        }
+        return new ArrayList<>(q);
+    }
+}
