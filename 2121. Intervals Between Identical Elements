@@ -1,0 +1,31 @@
+class Solution {
+    public long[] getDistances(int[] arr) {
+        long[] intervals = new long[arr.length];
+        Map<Integer, List<Integer>> indexes = new HashMap<>();
+        for(int i=0; i<arr.length; i++){
+            indexes.putIfAbsent(arr[i], new ArrayList<>());
+            indexes.get(arr[i]).add(i);
+        }
+
+        for (List<Integer> indices : indexes.values()) {
+            int size = indices.size();
+            long prefixSum = 0
+            long suffixSum = 0;
+
+            for (int i = 0; i < size; i++) {
+                int index = indices.get(i);
+                intervals[index] += (long) i * index - prefixSum;
+                prefixSum += index;
+            }
+
+            prefixSum = 0;
+            for (int i = size - 1; i >= 0; i--) {
+                int index = indices.get(i);
+                intervals[index] += suffixSum - (long) (size - 1 - i) * index;
+                suffixSum += index;
+            }
+        }
+
+        return intervals;
+    }
+}
