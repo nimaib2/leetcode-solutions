@@ -1,0 +1,16 @@
+class Solution {
+    public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+        String wordComb1 = "";
+        String wordComb2 = "";
+
+        for(int i=0; i<word1.length; i++){
+            wordComb1+=word1[i];
+        }
+
+        for(int i=0; i<word2.length; i++){
+            wordComb2+=word2[i];
+        }
+
+        return wordComb1.equals(wordComb2);
+    }
+}
