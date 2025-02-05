@@ -1,0 +1,16 @@
+class Solution {
+    public char nextGreatestLetter(char[] letters, char target) {
+        char smallest = 'z';
+        int greaterThan = 0;
+        for(int i=0; i<letters.length; i++){
+            if(letters[i]>target && letters[i]<=smallest){
+                smallest = letters[i];
+                greaterThan++;
+            }
+        }
+        if(smallest=='z' && greaterThan==0){
+            return letters[0];
+        }
+        return smallest;
+    }
+}
