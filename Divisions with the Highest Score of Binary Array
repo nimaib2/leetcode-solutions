@@ -1,0 +1,32 @@
+class Solution {
+    public List<Integer> maxScoreIndices(int[] nums) {
+        List<Integer> maxIndices = new ArrayList<>();
+        maxIndices.add(0);
+        int zeroesLeft = 0;
+        int onesRight = 0;
+        for(int num:nums){
+            onesRight+=num;
+        }
+        int maxScore = onesRight;
+
+        for(int i=0; i<nums.length; i++){
+            if(nums[i]==0){
+                zeroesLeft++;
+            } else {
+                onesRight--;
+            }
+
+            int score = onesRight+zeroesLeft;
+            if(score>maxScore){
+                if(!maxIndices.isEmpty()){
+                    maxIndices = new ArrayList<>();
+                }
+                maxIndices.add(i+1);
+                maxScore = score;
+            } else if(score==maxScore){
+                maxIndices.add(i+1);
+            }
+        }
+        return maxIndices;
+    }
+}
