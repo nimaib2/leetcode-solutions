@@ -1,0 +1,46 @@
+class Solution {
+    public String pushDominoes(String dominoes) {
+        int n = dominoes.length();
+        char[] result = dominoes.toCharArray();
+        int[] forces = new int[n];
+
+        // Left-to-right pass (applying rightward forces)
+        int force = 0;
+        for (int i = 0; i < n; i++) {
+            if (result[i] == 'R') {
+                force = n; // Maximum force from 'R'
+            } else if (result[i] == 'L') {
+                force = 0; // 'L' cancels rightward force
+            } else {
+                force = Math.max(force - 1, 0); // Decrement force over distance
+            }
+            forces[i] += force;
+        }
+
+        // Right-to-left pass (applying leftward forces)
+        force = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            if (result[i] == 'L') {
+                force = n; // Maximum force from 'L'
+            } else if (result[i] == 'R') {
+                force = 0; // 'R' cancels leftward force
+            } else {
+                force = Math.max(force - 1, 0); // Decrement force over distance
+            }
+            forces[i] -= force;
+        }
+
+        // Determine the final state based on net forces
+        for (int i = 0; i < n; i++) {
+            if (forces[i] > 0) {
+                result[i] = 'R';
+            } else if (forces[i] < 0) {
+                result[i] = 'L';
+            } else {
+                result[i] = '.';
+            }
+        }
+
+        return new String(result);
+    }
+}
