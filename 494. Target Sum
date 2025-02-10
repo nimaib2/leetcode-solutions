@@ -1,0 +1,13 @@
+class Solution {
+    public int findTargetSumWays(int[] nums, int target) {
+        return targetSumHelper(0, nums, 0, target);
+    }
+
+    public int targetSumHelper(int index, int[] nums, int sum, int target){
+        if(index==nums.length){
+            return sum==target ? 1:0;
+        }
+
+        return targetSumHelper(index+1, nums, sum+nums[index], target)+targetSumHelper(index+1, nums, sum-nums[index], target);
+    }
+}
