@@ -1,0 +1,64 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
+        List<Integer> list1 = addElements(root1);
+        List<Integer> list2 = addElements(root2);
+        List<Integer> res = new ArrayList<>();
+        int i=0;
+        int j=0;
+        while(i<list1.size() && j<list2.size()){
+            if(list1.get(i)>list2.get(j)){
+                res.add(list2.get(j));
+                j++;
+            } else {
+                res.add(list1.get(i));
+                i++;
+            }
+        }
+
+        if(i<list1.size()){
+            for(int k=i; k<list1.size(); k++){
+                res.add(list1.get(k));
+            }
+        }
+
+        if(j<list2.size()){
+            for(int k=j; k<list2.size(); k++){
+                res.add(list2.get(k));
+            }
+        }
+
+        return res;
+    }
+
+    public List<Integer> addElements(TreeNode root){
+        List<Integer> result = new ArrayList<>();
+        inOrderTraversal(root, result);
+        return result;
+    }
+
+    public void inOrderTraversal(TreeNode node, List<Integer> result){
+        if(node == null){
+            return;
+        }
+        inOrderTraversal(node.left, result);
+        result.add(node.val);
+        inOrderTraversal(node.right, result);
+    }
+
+
+}
