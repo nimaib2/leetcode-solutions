@@ -1,0 +1,23 @@
+class Solution {
+    public int[] occurrencesOfElement(int[] nums, int[] queries, int x) {
+        Map<Integer, Integer> occurrences = new HashMap<>();
+        int start = 1;
+        int[] queryResults = new int[queries.length];
+        for(int i=0; i<nums.length; i++){
+            if(nums[i]==x){
+                occurrences.put(start, i);
+                start++;
+            }
+        }
+
+        for(int i=0; i<queries.length; i++){
+            if(!occurrences.keySet().contains(queries[i])){
+                queryResults[i]=-1;
+            } else {
+                queryResults[i]=occurrences.get(queries[i]);
+            }
+        }
+
+        return queryResults;
+    }
+}
