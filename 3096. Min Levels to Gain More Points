@@ -1,0 +1,21 @@
+//Sliding window
+
+class Solution:
+    def minimumLevels(self, possible: List[int]) -> int:
+        divider = 1
+        aliceSum = sum(possible[0:divider])-possible[0:divider].count(0)
+        bobSum = sum(possible[divider:])-possible[divider:].count(0)
+
+        while divider<len(possible):
+            if aliceSum>bobSum:
+                return divider
+            divider+=1
+            if possible[divider-1]==0:
+                aliceSum-=1
+                bobSum+=1
+            else:
+                aliceSum+=1
+                bobSum-=1
+        
+        return -1
+        
