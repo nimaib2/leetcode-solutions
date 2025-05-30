@@ -1,0 +1,21 @@
+class Solution {
+    public int minimumRounds(int[] tasks) {
+        Map<Integer, Integer> levels = new HashMap<>();
+        for(int task:tasks){
+            if(levels.keySet().contains(task)){
+                levels.put(task, levels.get(task)+1);
+            } else {
+                levels.put(task, 1);
+            }
+        }
+
+        int rounds =0;
+        for(int task:levels.keySet()){
+            if(levels.get(task)==1){
+                return -1;
+            }
+            rounds+=(levels.get(task)+2)/3;
+        }
+        return rounds;
+    }
+}
