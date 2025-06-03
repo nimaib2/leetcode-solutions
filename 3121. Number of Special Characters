@@ -1,0 +1,29 @@
+import java.util.*;
+
+class Solution {
+    public int numberOfSpecialChars(String word) {
+        Map<Character, Integer> firstLower = new HashMap<>();
+        Map<Character, Integer> firstUpper = new HashMap<>();
+        
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (Character.isLowerCase(c)) {
+                firstLower.put(c, i);
+            } else {
+                char lowerC = Character.toLowerCase(c);
+                firstUpper.putIfAbsent(lowerC, i);
+            }
+        }
+        
+        int count = 0;
+        for (char c = 'a'; c <= 'z'; c++) {
+            if (firstLower.containsKey(c) && firstUpper.containsKey(c)) {
+                if (firstLower.get(c) < firstUpper.get(c)) {
+                    count++;
+                }
+            }
+        }
+        
+        return count;
+    }
+}
