@@ -1,0 +1,22 @@
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        Map<Character, Character> matches = new HashMap<>();
+        for(int i=0; i<s.length(); i++){
+            if(matches.keySet().contains(s.charAt(i)) && (t.charAt(i)!=matches.get(s.charAt(i)))){
+                return false;
+            } else {
+                matches.put(s.charAt(i), t.charAt(i));
+            }
+        }
+
+        matches.clear();
+        for(int i=0; i<t.length(); i++){
+            if(matches.keySet().contains(t.charAt(i)) && (s.charAt(i)!=matches.get(t.charAt(i)))){
+                return false;
+            } else {
+                matches.put(t.charAt(i), s.charAt(i));
+            }
+        }
+        return true;
+    }   
+}
