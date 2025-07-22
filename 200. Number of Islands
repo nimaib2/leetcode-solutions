@@ -8,11 +8,14 @@ class Solution {
         int n=grid[0].length;
         Queue<int[]> q = new LinkedList<>();
         int[][] dirs = {{-1,0}, {1, 0}, {0, -1}, {0, 1}};
+
+        //Search up down left right for cells in the same island
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
                 if(grid[i][j]=='1'){
                     islands++;
                     q.add(new int[]{i, j});
+                    //Set value to 2 in order to prevent duplicates from being counted
                     grid[i][j]='2';
                     while(!q.isEmpty()){
                         int[] coords = q.poll();
