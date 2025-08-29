@@ -1,0 +1,22 @@
+class Solution {
+    int min;
+    public int jump(int[] nums) {
+        if(nums==null || nums.length<=1){
+            return 0;
+        }
+
+        int currInterval=nums[0];
+        int nextInterval=currInterval;
+        int jumps=1;
+        int n=nums.length;
+
+        for(int i=0; i<n; i++){
+            nextInterval=Math.max(nextInterval, i+nums[i]);
+            if(i<n-1 && i==currInterval){
+                currInterval=nextInterval;
+                jumps++;
+            }
+        }
+        return jumps;
+    }
+}
