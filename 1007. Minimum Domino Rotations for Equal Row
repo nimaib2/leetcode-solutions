@@ -1,0 +1,30 @@
+class Solution {
+    public int minDominoRotations(int[] tops, int[] bottoms) {
+        if(tops.length!=bottoms.length){
+            return -1;
+        }
+        int first = findMinRotations(tops, bottoms, tops[0]);
+        if(first!=-1){
+            return first;
+        }
+        int second = findMinRotations(tops, bottoms, bottoms[0]);
+        return second;
+    }
+
+    private int findMinRotations(int[] tops, int[] bottoms, int target){
+        int aRotations = 0;
+        int bRotations=0;
+        for(int i=0; i<tops.length; i++){
+            if(tops[i]!=target && bottoms[i]!=target){
+                return -1;
+            }
+            if(tops[i]!=target){
+                aRotations++;
+            }
+            if(bottoms[i]!=target){
+                bRotations++;
+            }
+        }
+        return Math.min(aRotations, bRotations);
+    }
+}
