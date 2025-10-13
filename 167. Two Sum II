@@ -1,0 +1,25 @@
+Time: O(N)
+Space: O(1), ans[] is always size 2
+
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        int[] ans = new int[2];
+        int left=0;
+        int right=numbers.length-1;
+        while(numbers[right]>target && numbers[right]+numbers[left]>target){
+            right--;
+        }
+        while(right>left){
+            if(numbers[right]+numbers[left]>target){
+                right--;
+            } else if(numbers[right]+numbers[left]<target){
+                left++;
+            } else {
+                ans[0]=left+1;
+                ans[1]=right+1;
+                return ans;
+            }
+        }
+        return ans;
+    }
+}
