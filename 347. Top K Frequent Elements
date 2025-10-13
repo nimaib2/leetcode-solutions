@@ -1,0 +1,26 @@
+time: O(NlogN) because of priorityQueue
+space: O(N)
+
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Integer> freqMap = new HashMap<>();
+        int[] topK = new int[k];
+        for(int num:nums){
+            if(freqMap.containsKey(num)){
+                freqMap.put(num, freqMap.get(num)+1);
+            } else {
+                freqMap.put(num, 1);
+            }
+        }
+
+        PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b)->b[1]-a[1]);
+        for(int num:freqMap.keySet()){
+            maxHeap.offer(new int[]{num, freqMap.get(num)});
+        }
+
+        for(int i=0; i<k; i++){
+            topK[i]=maxHeap.poll()[0];
+        }
+        return topK;
+    }
+}
