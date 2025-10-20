@@ -1,0 +1,22 @@
+class Solution {
+    public int countDistinctIntegers(int[] nums) {
+        HashSet<Integer> seen = new HashSet<>();
+        for(int num:nums){
+            seen.add(num);
+            seen.add(reverse(num));
+        }
+        return seen.size();
+    }
+
+    private int reverse(int num){
+        if(num%10==num){
+            return num;
+        }
+        String s="";
+        while(num>0){
+            s+=num%10;
+            num/=10;
+        }
+        return Integer.parseInt(s);
+    }
+}
